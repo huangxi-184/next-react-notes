@@ -1,13 +1,13 @@
-import Note from "@/components/Note"
+import NoteEditor from "@/components/NoteEditor"
 import { getNote } from "@/lib/redis"
 
-type NoteEditorProps = {
+type EditPageProps = {
   params: {
     id: string
   }
 }
 
-export default async function Page({ params }: NoteEditorProps) {
+export default async function EditPage({ params }: EditPageProps) {
   const noteId = params.id
   const note = await getNote(noteId)
 
@@ -19,5 +19,5 @@ export default async function Page({ params }: NoteEditorProps) {
     )
   }
 
-  return <Note noteId={noteId} note={note} />
+  return <NoteEditor noteId={noteId} initialTitle={note.title} initialBody={note.content} />
 }
