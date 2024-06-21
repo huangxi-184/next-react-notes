@@ -10,7 +10,7 @@ export default function DeleteButton({ isDraft, formAction }: DeleteButtonProps)
   return (
     !isDraft && (
       <button className="note-editor-delete" disabled={pending} formAction={formAction} role="menuitem">
-        <img src="/cross.svg" width="10px" height="10px" alt="" role="presentation" />
+        <img src="/cross.svg" width="10px" height="10px" alt="Delete" role="presentation" />
         Delete
       </button>
     )

@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 import NotePreview from "@/components/NotePreview"
 import { useFormState } from "react-dom"
-import { deleteNote, saveNote } from "@/app/actions"
+import { deleteNote, saveNote } from "@/app/[lng]/actions"
 
 import SaveButton from "@/components/SaveButton"
 import DeleteButton from "@/components/DeleteButton"
@@ -13,14 +13,14 @@ const initialState = {
 }
 
 type NoteEditorProps = {
-  noteId: string
+  noteId: string | null
   initialTitle: string
   initialBody: string
 }
 
 export default function NoteEditor({ noteId, initialTitle, initialBody }: NoteEditorProps) {
-  const [saveState, saveFormAction] = useFormState(saveNote, initialState)
-  const [delState, delFormAction] = useFormState(deleteNote, initialState)
+  const [saveState, saveFormAction] = useFormState(saveNote as any, initialState)
+  const [, delFormAction] = useFormState(deleteNote as any, initialState)
 
   const [title, setTitle] = useState(initialTitle)
   const [body, setBody] = useState(initialBody)
@@ -28,9 +28,9 @@ export default function NoteEditor({ noteId, initialTitle, initialBody }: NoteEd
   const isDraft = !noteId
 
   useEffect(() => {
-    if (saveState.errors) {
+    if ((saveState as any).errors) {
       // 处理错误
-      console.log(saveState.errors)
+      console.log((saveState as any).errors)
     }
   }, [saveState])
 
@@ -44,7 +44,7 @@ export default function NoteEditor({ noteId, initialTitle, initialBody }: NoteEd
         </div>
         <div className="note-editor-menu">
           {saveState?.message}
-          {saveState.errors && saveState.errors[0].message}
+          {(saveState as any).errors && (saveState as any).errors[0].message}
         </div>
         <label className="offscreen" htmlFor="note-title-input">
           Enter a title for your note

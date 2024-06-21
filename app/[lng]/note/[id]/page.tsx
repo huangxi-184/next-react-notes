@@ -8,6 +8,7 @@ type NoteEditorProps = {
 }
 
 export default async function Page({ params }: NoteEditorProps) {
+  // 取url中的id参数
   const noteId = params.id
   const note = await getNote(noteId)
 

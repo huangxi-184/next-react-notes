@@ -2,8 +2,23 @@
 
 import { useSearchParams } from "next/navigation"
 import SidebarNoteItemContent from "@/components/SidebarNoteItemContent"
+import React from "react"
 
-export default function SidebarNoteList({ notes }) {
+type SidebarNoteListFilterProps = {
+  notes: Array<SidebarNoteFilterProps>
+}
+
+type SidebarNoteFilterProps = {
+  noteId: string
+  note: {
+    title: string
+    content: string
+    updateTime: string
+  }
+  header: React.ReactNode
+}
+
+export default function SidebarNoteListFilter({ notes }: SidebarNoteListFilterProps) {
   const searchParams = useSearchParams()
   const searchText = searchParams.get("q")
   return (

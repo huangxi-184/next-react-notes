@@ -1,7 +1,17 @@
 import dayjs from "dayjs"
 import NotePreview from "@/components/NotePreview"
 import EditButton from "@/components/EditButton"
-export default function Note({ noteId, note }) {
+
+type NoteProps = {
+  noteId: string
+  note: {
+    title: string
+    content: string
+    updateTime: string
+  }
+}
+
+export default function Note({ noteId, note }: NoteProps) {
   const { title, content, updateTime } = note
 
   return (

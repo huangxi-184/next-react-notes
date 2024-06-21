@@ -10,12 +10,12 @@ import { z } from "zod"
  */
 const schema = z.object({
   title: z.string(),
-  content: z.string().min(1, "请填写内容").max(1000, "字数最多 1000"),
+  content: z.string().min(1, "请填写内容").max(10000, "字数最多 10000"),
 })
 
-export async function saveNote(prevState, formData) {
+export async function saveNote(_: string, formData: FormData) {
   // 获取 noteId
-  const noteId = formData.get("noteId")
+  const noteId = formData.get("noteId") as string
   const data = {
     title: formData.get("title"),
     content: formData.get("body"),
@@ -42,8 +42,8 @@ export async function saveNote(prevState, formData) {
   return { message: `Add Success!` }
 }
 
-export async function deleteNote(prevState, formData) {
-  const noteId = formData.get("noteId")
+export async function deleteNote(_: string, formData: FormData) {
+  const noteId = formData.get("noteId") as string
   delNote(noteId)
   revalidatePath("/", "layout")
   redirect("/")

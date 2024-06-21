@@ -19,6 +19,7 @@
     ],
     "baseUrl": ".",
     "paths": {
+      "@/actions": ["app/[lng]/actions.ts"],
       "@/components/*": ["components/*"],
       "@/lib/*": ["lib/*"],
       "@/*": ["./*"]

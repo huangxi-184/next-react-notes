@@ -6,13 +6,13 @@ const allowedAttributes = Object.assign({}, sanitizeHtml.defaults.allowedAttribu
   img: ["alt", "src"],
 })
 
-export default async function NotePreview({ children }: { children: string }) {
+export default function NotePreview({ children }: { children: string }) {
   return (
     <div className="note-preview">
       <div
         className="text-with-markdown"
         dangerouslySetInnerHTML={{
-          __html: sanitizeHtml(await marked(children || ""), {
+          __html: sanitizeHtml(marked(children || "") as string, {
             allowedTags,
             allowedAttributes,
           }),
