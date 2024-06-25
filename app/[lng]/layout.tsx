@@ -2,6 +2,7 @@ import "./style.css"
 import Sidebar from "@/components/Sidebar"
 import React from "react"
 import { locales } from "@/config"
+import Header from "@/components/Header"
 
 interface RootLayoutProps {
   children: React.ReactNode
@@ -19,6 +20,7 @@ export default function RootLayout({ children, params: { lng } }: RootLayoutProp
     <html lang={lng}>
       <body>
         <div className="container">
+          <Header />
           <div className="main">
             <Sidebar />
             <section className="col note-viewer">{children}</section>
