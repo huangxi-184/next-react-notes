@@ -1,6 +1,6 @@
 import { signIn, signOut, auth } from "auth"
 
-function SignIn({ provider, ...props }) {
+function SignIn({ provider, ...props }: any) {
   return (
     <form
       action={async () => {
@@ -12,7 +12,7 @@ function SignIn({ provider, ...props }) {
   )
 }
 
-function SignOut(props) {
+function SignOut(props: any) {
   return (
     <form
       action={async () => {
