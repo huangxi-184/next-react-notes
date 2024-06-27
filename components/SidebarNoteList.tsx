@@ -18,15 +18,19 @@ export default async function NoteList() {
   }
 
   return (
-    <SidebarNoteListFilter
-      notes={Object.entries(notes).map(([noteId, note]) => {
-        const noteData = JSON.parse(note)
-        return {
-          noteId,
-          note: noteData,
-          header: <SidebarNoteItemHeader title={noteData.title} updateTime={noteData.updateTime} />,
-        }
-      })}
-    />
+    <>
+      <SidebarNoteListFilter
+        notes={Object.entries(notes)
+          .map(([noteId, note]) => {
+            const noteData = JSON.parse(note)
+            return {
+              noteId,
+              note: noteData,
+              header: <SidebarNoteItemHeader title={noteData.title} updateTime={noteData.updateTime} />,
+            }
+          })
+          .sort((a, b) => Number(b.noteId) - Number(a.noteId))}
+      />
+    </>
   )
 }
